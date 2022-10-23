@@ -13,13 +13,21 @@ Over recent years, many methods like LSTM, random forest, and multi layer percep
 For now, we assume the input will be a window of 30 days. In other words, we are using data from the past 30 days to predict the trend of the price on the 31st day[4]. The problem will then become a binary classification problem. The accuracy is calculated by classification metrics: accuracy scores (F-measure), Hamming loss, and ROCAUC to compare the predicted market price trend and the ground truth market price trend of the period depending on which matrix represents the accuracy better and what our output will be (market price of each time interval in the day or a matrix represents the trend) , since what we are looking for is more of an accurate trend of market price over the period than market price itself.
 
 # *Gantt Chart for Group Work*
-***Group Member/Task***|Data Sourcing | Model Selection | Data pre-processing| Model Coding | Result Eval & tuning | Report & Recording
+***Group Member/Task***|Data Sourcing 10/7-10/14 | Model Selection 10/7-10/14 | Data pre-processing 10/7-10/20| Model Coding 10/14-11/19| Result Eval & tuning 11/19-11/24| Report & Recording 11/24-12/6
 --------- | -------------| -------------| -------------| -------------| -------------| -------------
 Lifu Wang | R| R| | R for Model 1| |
 Xiaofeng Wu| |R| | R for DL Method| R for DL Method| R
 Yelu Wang ||R|| R for Model 1| R for Model 1| R
 Hanran Wu | | R || R|R|R
 Zhonghui Shen |R for both data|R|R for both Data | | | R for Report
+
+***Group Member/Task***|Data Sourcing | Model Selection | Data pre-processing| Model Coding| Result Eval & tuning | Report & Recording
+--------- | -------------| -------------| -------------| -------------| -------------| -------------
+Lifu Wang |C| C| | C|C |C
+Xiaofeng Wu| |C| | C| C| C
+Yelu Wang ||C|| C| C| C
+Hanran Wu | | C||C|C|C
+Zhonghui Shen |C|C|C| | |C
 
 # *References:*
 
