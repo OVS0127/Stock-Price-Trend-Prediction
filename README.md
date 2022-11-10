@@ -44,4 +44,7 @@ Zhonghui Shen |C|C|C| | |C
 [1]https://www.kaggle.com/datasets/borismarjanovic/price-volume-data-for-all-us-stocks-etfs
 
 
+# *Midterm Report*
+# *Part I-Importing Data and Required Packages*
+
 
