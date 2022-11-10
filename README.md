@@ -48,7 +48,7 @@ Zhonghui Shen |C|C|C| | |C
 
 ## ***Midterm Report***
 ### *Part I-Importing Data and Required Packages*
-![Alt](C:\Users\Administrator\Desktop\import_midterm)
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/import_midterm.png)
 
 
 
