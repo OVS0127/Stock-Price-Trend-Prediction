@@ -44,11 +44,19 @@ Zhonghui Shen |C|C|C| | |C
 ### *Dataset*
 
 [1]https://www.kaggle.com/datasets/borismarjanovic/price-volume-data-for-all-us-stocks-etfs
-
-
+<br>
+<br>
+<br>
 ## ***Midterm Report***
-### *Part I-Importing Data and Required Packages*
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/import_midterm.png)
+### *Part I*
+>**Step I. Importing Data and Required Packages**\
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/import_midterm.png)\
+We imported yfinance as our data source; also, we utilized several data packages that would manifest the result effectively.
+>**Step II. Forming the datasets into CSV file**\
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/import_midterm.png)\
+We extracted the data from source website to .
+
+
 
 
 
