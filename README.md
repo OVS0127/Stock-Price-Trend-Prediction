@@ -48,7 +48,8 @@ Zhonghui Shen |C|C|C| | |C
 <br>
 <br>
 ## **Midterm Report**
-The datasets and method we should select have triggered intense discussion in our group. At this stage, we scraped the data from Yahoo Finance and collected the trend within 1000 days of stock from each company. Moreover, we utilized feature engineering and random forest to predict the trend of any stock in the market within the future of 5 days, 1 month and 1 year in the future. We also figured out possible improvements at current status. We have also uploaded all of our code in the link. Several comparatively indicative parts of the code and the result we obtained are included in our report below to make the process clear.
+The datasets and method we should select have triggered intense discussion in our group. At this stage, we scraped the data from Yahoo Finance and collected the trend within 1000 days of stock from each company. Moreover, we utilized feature engineering and random forest to predict the trend of any stock in the market within the future of 5 days, 1 month and 1 year in the future. We also figured out possible improvements at current status. **Several comparatively indicative parts of the code and the result we obtained are included in our report below to make the process clear.**
+
 ### *Part I*
 #### ***I. Importing Data and Required Packages***<br />
 ```
