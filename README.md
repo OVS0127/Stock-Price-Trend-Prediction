@@ -147,6 +147,11 @@ plt.savefig('tree.png')
 ```
 We begin to visualize the random forest as combination of decision trees. We will begin by determining the difference between the true value and the prediction values. This difference will be used for calculating the accuracy as well as indicating how well we perform overall. Therefore, we obtained the graph of decision trees as below.
 
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/Trees.png)
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/Predicted_1.png)
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/Predicted_2.png)
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/result_2.png)
+
 
 
 
