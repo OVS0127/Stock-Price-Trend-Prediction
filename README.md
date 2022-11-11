@@ -48,16 +48,63 @@ Zhonghui Shen |C|C|C| | |C
 <br>
 <br>
 ## ***Midterm Report***
+The datasets and method we should select have triggered intense discussion in our group. At this stage, we scraped the data from Yahoo Finance and collected the trend within 1000 days of stock from each company. Moreover, we utilized feature engineering and random forest to predict the trend of any stock in the market within the future of 5 days, 1 month and 1 year in the future. We also figured out possible improvements at current status.
 ### *Part I*
 #### ***I. Importing Data and Required Packages***<br />
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/import.png)<br />
-**We imported yfinance as our data source; also, we utilized several data packages that would manifest the result effectively. For instance, we empleyed tools to plot the diagrams of stock trend we predict. Also, for our future analysis and prediction, we would continue with**
+```
+import yfinance as yf
+import talib
+import datetime as dt
+import pandas as pd
+import numpy as np
+from numpy import arange
+import matplotlib.pyplot as plt
+from pandas import read_csv
+from sklearn import metrics
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import RandomizedSearchCV
+```
+**We imported yfinance as our data source; also, we utilized several data packages that would manifest the result effectively. For instance, we empleyed tools to plot the diagrams of stock trend we predict. Also, for our future analysis and prediction, we would continue with random forest method.**
 
 #### ***II. Feature Engineering***<br />
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/adding_features.png)<br />
+```
+stock_list = ['0005.HK', '0006.HK', '0066.HK', '0700.HK', '2800.HK']
+sp500data = yf.download('0066.HK', start="2020-01-01", end="2022-11-16")
+feature_names = []
+for n in [14, 30, 50, 200]:
+    sp500data['ma' + str(n)] = talib.SMA(sp500data['Adj Close'].values, timeperiod=n)
+    sp500data['rsi' + str(n)] = talib.RSI(sp500data['Adj Close'].values, timeperiod=n)
+    feature_names = feature_names + ['ma' + str(n), 'rsi' + str(n)]
+sp500data['Volume_1d_change'] = sp500data['Volume'].pct_change()
+volume_features = ['Volume_1d_change']
+feature_names.extend(volume_features)
+```
+**In order to make our prediction with a more solid ground with less interference, we select an essential approach to reduce complexity of our dataset. Since our dataset contains a lot of columns, including the open and close value with and without adjustment, the highest and lowest point, etc. it might be useful for us to examine the correlation and effective weight of every feature to drop the features that do not need to be stressed while selecting and incorporating more significant ones into our further analysis.**
 
 #### ***III. Forming the datasets into CSV file & Cleaning***<br />
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/read_and_clean.png)<br />
+```
+sp500_df = pd.DataFrame(sp500data)
+sp500_df.to_csv("sp500_data.csv")
+print(sp500_df)
+read_df = pd.read_csv("sp500_data.csv")
+read_df.set_index("Date", inplace=True)
+pd.set_option('mode.use_inf_as_na', True)
+read_df.dropna(
+    axis=0,
+    how='any',
+    subset=None,
+    inplace=True
+)
+
+read_df['Adj Close'].plot()
+plt.ylabel("Adjusted Close Prices")
+plt.show()
+df = pd.read_csv("sp500_data.csv")
+df.set_index("Date", inplace=True)
+df.dropna(inplace=True)
+```
 **We extracted the data from source website to a CSV file that contain the information we would like to predict out of our method.**
 
 #### ***IV. Splitting Training and Testing Datasets***<br />
