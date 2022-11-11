@@ -1,6 +1,6 @@
 # **Stock-Price-Trend-Prediction**
 
-## ***I.Proposal***
+## **Proposal**
 
 ### *Introduction*
 
@@ -47,8 +47,8 @@ Zhonghui Shen |C|C|C| | |C
 <br>
 <br>
 <br>
-## ***Midterm Report***
-The datasets and method we should select have triggered intense discussion in our group. At this stage, we scraped the data from Yahoo Finance and collected the trend within 1000 days of stock from each company. Moreover, we utilized feature engineering and random forest to predict the trend of any stock in the market within the future of 5 days, 1 month and 1 year in the future. We also figured out possible improvements at current status.
+## **Midterm Report**
+The datasets and method we should select have triggered intense discussion in our group. At this stage, we scraped the data from Yahoo Finance and collected the trend within 1000 days of stock from each company. Moreover, we utilized feature engineering and random forest to predict the trend of any stock in the market within the future of 5 days, 1 month and 1 year in the future. We also figured out possible improvements at current status. We have also uploaded all of our code in the link. Several comparatively indicative parts of the code and the result we obtained are included in our report below to make the process clear.
 ### *Part I*
 #### ***I. Importing Data and Required Packages***<br />
 ```
@@ -66,7 +66,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import RandomizedSearchCV
 ```
-**We imported yfinance as our data source; also, we utilized several data packages that would manifest the result effectively. For instance, we empleyed tools to plot the diagrams of stock trend we predict. Also, for our future analysis and prediction, we would continue with random forest method.**
+We imported yfinance as our data source; also, we utilized several data packages that would manifest the result effectively. For instance, we empleyed tools to plot the diagrams of stock trend we predict. Also, for our future analysis and prediction, we would continue with random forest method.
 
 #### ***II. Feature Engineering***<br />
 ```
@@ -81,15 +81,14 @@ sp500data['Volume_1d_change'] = sp500data['Volume'].pct_change()
 volume_features = ['Volume_1d_change']
 feature_names.extend(volume_features)
 ```
-**In order to make our prediction with a more solid ground with less interference, we select an essential approach to reduce complexity of our dataset. Since our dataset contains a lot of columns, including the open and close value with and without adjustment, the highest and lowest point, etc. it might be useful for us to examine the correlation and effective weight of every feature to drop the features that do not need to be stressed while selecting and incorporating more significant ones into our further analysis.**
+In order to make our prediction with a more solid ground with less interference, we select an essential approach to reduce complexity of our dataset. Since our dataset contains a lot of columns, including the open and close value with and without adjustment, the highest and lowest point, etc. it might be useful for us to examine the correlation and effective weight of every feature to drop the features that do not need to be stressed while selecting and incorporating more significant ones into our further analysis.
 
 #### ***III. Forming the datasets into CSV file & Cleaning***<br />
 ```
 sp500_df = pd.DataFrame(sp500data)
 sp500_df.to_csv("sp500_data.csv")
-print(sp500_df)
-read_df = pd.read_csv("sp500_data.csv")
-read_df.set_index("Date", inplace=True)
+```
+```
 pd.set_option('mode.use_inf_as_na', True)
 read_df.dropna(
     axis=0,
@@ -97,25 +96,60 @@ read_df.dropna(
     subset=None,
     inplace=True
 )
-
-read_df['Adj Close'].plot()
-plt.ylabel("Adjusted Close Prices")
-plt.show()
-df = pd.read_csv("sp500_data.csv")
-df.set_index("Date", inplace=True)
-df.dropna(inplace=True)
 ```
-**We extracted the data from source website to a CSV file that contain the information we would like to predict out of our method.**
+We extracted the data from source website to a CSV file that contain the information we would like to predict out of our method. We also conducted data cleaning to drop empty values that might affect the validity of our training dataset(sometimes feature not applicable or sometimes there contains NaN as value missing. We selected to plot "Ädjusted Close" to indicate the trend.
 
 #### ***IV. Splitting Training and Testing Datasets***<br />
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/split.png)<br />
+```
+x = df.iloc[:, [0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]].values
+y = df.iloc[:, 4].values
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.26,  random_state=0)
+```
+We selected two group of data, x and y, each into their training and testing datasets and normalize to fit them into appropriate scale.
 
 #### ***V. Model***<br />
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/model.png)<br />
+```
+model = RandomForestRegressor(n_estimators=500, random_state=42, min_samples_split=2, min_samples_leaf=1, max_depth=10, bootstrap=True)
+model.fit(x_train, y_train)
+predict = model.predict(x_test)
+```
+```
+rscv = RandomizedSearchCV(estimator=model, param_distributions=grid_rf, cv=3, n_jobs=-1, verbose=2, n_iter=200)
+rscv_fit = rscv.fit(x_train, y_train)
+best_parameters = rscv_fit.best_params_
+```
+Using random forest regression method, we want to see the current result we could obtain. Also, we used cross validation as a resampling method that uses different portions of the data to test and train this model on different iterations. In each iteration, it would select the features randomly with fairness.
 
 #### ***VI. Result and Output***<br />
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/result.png)
+```
+print(f'Train Score : {model.score(x_train, y_train) * 100:.2f}% and Test Score : {model.score(x_test, y_test) * 100:.2f}% using Random Tree Regressor.')
+errors = abs(predict - y_test)
+mape = 100 * (errors / y_test)
+accuracy = 100 - np.mean(mape)
+print('Accuracy:', round(accuracy, 2), '%.')
+```
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/output.png)<br />
+As the first general result, it is a result that generally met our expectation. After our implementation of Random Forest with the cleaned but not reduced dataset and it turns out that the accuracy with random forest on first-cleaned dataset is around 98%.
+
+#### ***VII. Improvement and Visualization***<br />
+```
+model = RandomForestRegressor(n_estimators=500, random_state=42, min_samples_split=2, min_samples_leaf=1, max_depth=10, bootstrap=True)
+model.fit(x_train, y_train)
+predict = model.predict(x_test)
+```
+```
+one_estimator = rscv_fit.estimator[0]
+f_name, c_name = feature_target_name(date)
+plt.figure()  
+_ = tree.plot_tree(one_estimator, feature_names = f_name, filled=True, rounded = True, proportion = False, precision = 2, fontsize=6)
+plt.show()
+plt.savefig('tree.png')
+```
+We begin to visualize the random forest as combination of decision trees. We will begin by determining the difference between the true value and the prediction values. This difference will be used for calculating the accuracy as well as indicating how well we perform overall. Therefore, we obtained the graph of decision trees as below.
+
+
+
+
 
 
 
