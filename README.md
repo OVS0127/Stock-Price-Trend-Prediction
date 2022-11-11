@@ -49,25 +49,26 @@ Zhonghui Shen |C|C|C| | |C
 <br>
 ## ***Midterm Report***
 ### *Part I*
->**I. Importing Data and Required Packages**\
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/import.png)\
-We imported yfinance as our data source; also, we utilized several data packages that would manifest the result effectively.
+#### ***I. Importing Data and Required Packages***<br />
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/import.png)<br />
+**We imported yfinance as our data source; also, we utilized several data packages that would manifest the result effectively. For instance, we empleyed tools to plot the diagrams of stock trend we predict. Also, for our future analysis and prediction, we would continue with**
 
->**II. Feature Engineering**\
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/adding_features.png)\
+#### ***II. Feature Engineering***<br />
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/adding_features.png)<br />
 
->**III. Forming the datasets into CSV file & Data Cleaning**\
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/read_and_clean.png)\
-We extracted the data from source website to a CSV file that contain the information we would like to predict out of our method.
+#### ***III. Forming the datasets into CSV file & Cleaning***<br />
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/read_and_clean.png)<br />
+**We extracted the data from source website to a CSV file that contain the information we would like to predict out of our method.**
 
->**IV. Splitting Training and Testing Datasets**\
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/split.png)\
+#### ***IV. Splitting Training and Testing Datasets***<br />
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/split.png)<br />
 
->**V. Model**\
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/model.png)\
+#### ***V. Model***<br />
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/model.png)<br />
 
->**VI. Result**\
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/result.png)\
+#### ***VI. Result and Output***<br />
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/result.png)
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/output.png)<br />
 
 
 
