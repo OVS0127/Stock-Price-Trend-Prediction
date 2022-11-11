@@ -49,13 +49,28 @@ Zhonghui Shen |C|C|C| | |C
 <br>
 ## ***Midterm Report***
 ### *Part I*
->**Step I. Importing Data and Required Packages**\
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/import_midterm.png)\
+>**I. Importing Data and Required Packages**\
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/import.png)\
 We imported yfinance as our data source; also, we utilized several data packages that would manifest the result effectively.
 
->**Step II. Forming the datasets into CSV file**\
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/convert_csv_midterm.png)\
+>**II. Feature Engineering**\
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/adding_features.png)\
+
+>**III. Forming the datasets into CSV file & Data Cleaning**\
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/read_and_clean.png)\
 We extracted the data from source website to a CSV file that contain the information we would like to predict out of our method.
+
+>**IV. Splitting Training and Testing Datasets**\
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/split.png)\
+
+>**V. Model**\
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/model.png)\
+
+>**VI. Result**\
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/result.png)\
+
+
+
 
 
 
