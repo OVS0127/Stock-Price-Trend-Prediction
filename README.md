@@ -149,7 +149,7 @@ We begin to visualize the random forest as combination of decision trees. We wil
 
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/Trees.png) <br />
 
-We tried to train two companies to see if the predicted value are closely associated with the the correct ground truth from 2018 till now. And we obtained the graphs below. We can see that the accuracy is generally appropriate and constantly high.
+We tried to train two companies to see if the predicted value are closely associated with the the correct ground truth from 2016 till now. And we obtained the graphs below. We can see that the accuracy is generally appropriate and constantly high.
 
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/Predicted_1.png)<br />
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/Predicted_2.png)<br />
@@ -157,7 +157,7 @@ We tried to train two companies to see if the predicted value are closely associ
 
 #### ***VIII. Direction for our next Phase***<br />
 Currently, our implementation of feature engineering and random forest method met our expectation and proved that we are on the right track. However, we have several more aspects to consider before we reach a final conclusion. The high accuracy was probably due to a correct feature chose instead of applicable to every case. Therefore, here are several points we would like to list out.<br />
-1.We would like to further test and configure to determine the correlation thresholds between different column features. Also, we are considering using tools to visualize the correlation, including SNS's heat map under Exploratory Data Analysis. Hopefully it would boost accuracy.<br />
+1.We would like to further test and configure to determine the correlation thresholds between different column features, and simultaneously, considering the possibility of adding dimensions including variance or moving average, etc. Also, we are considering using tools to visualize the correlation, including SNS's heat map under Exploratory Data Analysis. Hopefully it would boost accuracy.<br />
 2.Overfitting to one or specific sets of data can be detrimental when generalizing the result to other companies. Continuous cross-validation(using different methods, such as kfold), and training with more data with augmentation is required in our next phase.<br />
 3.If possible, we could try out on different methods and compare the effectiveness, including multiple linear regression and forecasting, or deep learning, to see if any stage could overperform ultimately.<br />
 
