@@ -48,7 +48,7 @@ Zhonghui Shen |C|C|C| | |C
 <br>
 <br>
 ## **Midterm Report**
-The datasets and method we should select have triggered intense discussion in our group. At this stage, we scraped the data from Yahoo Finance and collected the trend within 1000 days of stock from each company. Moreover, we utilized feature engineering and random forest to predict the trend of any stock in the market within the future of 5 days, 1 month and 1 year in the future. We also figured out possible improvements at current status. **Several comparatively indicative parts of the code and the result we obtained are included in our report below to make the process clear.**
+The datasets and method we should select have triggered intense discussion in our group. At this stage, we scraped the data from Yahoo Finance and collected the trend within 1000 days of stock from each company. Moreover, we utilized feature engineering and random forest to predict the trend of any stock in the market in the future of 1 day, 5 days, 1 month and 1 year. We also figured out possible improvements at current status. **Several comparatively indicative parts of the code and the result we obtained are included in our report below to make the process clear.**
 
 ### *Part I*
 #### ***I. Importing Data and Required Packages***<br />
@@ -67,11 +67,10 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import RandomizedSearchCV
 ```
-We imported yfinance as our data source; also, we utilized several data packages that would manifest the result effectively. For instance, we empleyed tools to plot the diagrams of stock trend we predict. Also, for our future analysis and prediction, we would continue with random forest method.
+We imported yfinance as our data source; also, we utilized several data packages that would manifest the result effectively. For instance, we employed tools to plot the diagrams of stock trend we predict. Also, for our future analysis and prediction, we would continue with random forest method.
 
 #### ***II. Forming the datasets into CSV file & Cleaning***<br />
 ```
-stock_list = ['0005.HK', '0006.HK', '0066.HK', '0700.HK', '2800.HK']
 sp500data = yf.download('0066.HK', start="2020-01-01", end="2022-11-16")
 sp500_df = pd.DataFrame(sp500data)
 sp500_df.to_csv("sp500_data.csv")
@@ -85,7 +84,7 @@ read_df.dropna(
     inplace=True
 )
 ```
-We extracted the data from source website to a CSV file that contain the information we would like to predict out of our method. We also conducted data cleaning to drop empty values that might affect the validity of our training dataset(sometimes feature not applicable or sometimes there contains NaN as value missing. We selected to plot "Ädjusted Close" to indicate the trend.
+We extracted the data from source website to a CSV file that contain the information we would like to predict out of our method. We also conducted data cleaning to drop empty values or infinity values that might affect the validity of our training dataset(sometimes feature not applicable or sometimes there contains NaN as value missing. We selected to plot "Ädjusted Close" to indicate the trend.
 
 #### ***III. Feature Engineering***<br />
 ```
@@ -106,7 +105,7 @@ x = df.iloc[:, [0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]].values
 y = df.iloc[:, 4].values
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.26,  random_state=0)
 ```
-We selected two group of data, x and y, each into their training and testing datasets and normalize to fit them into appropriate scale.
+We selected the fifth column 'Adjusted Close' as the ground truth(y). The rest of the columns becomes the input(x). we also split x and y into their training and testing datasets and normalized them to fit them into appropriate scale.
 
 #### ***V. Model***<br />
 ```
