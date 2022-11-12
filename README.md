@@ -69,23 +69,10 @@ from sklearn.model_selection import RandomizedSearchCV
 ```
 We imported yfinance as our data source; also, we utilized several data packages that would manifest the result effectively. For instance, we empleyed tools to plot the diagrams of stock trend we predict. Also, for our future analysis and prediction, we would continue with random forest method.
 
-#### ***II. Feature Engineering***<br />
+#### ***II. Forming the datasets into CSV file & Cleaning***<br />
 ```
 stock_list = ['0005.HK', '0006.HK', '0066.HK', '0700.HK', '2800.HK']
 sp500data = yf.download('0066.HK', start="2020-01-01", end="2022-11-16")
-feature_names = []
-for n in [14, 30, 50, 200]:
-    sp500data['ma' + str(n)] = talib.SMA(sp500data['Adj Close'].values, timeperiod=n)
-    sp500data['rsi' + str(n)] = talib.RSI(sp500data['Adj Close'].values, timeperiod=n)
-    feature_names = feature_names + ['ma' + str(n), 'rsi' + str(n)]
-sp500data['Volume_1d_change'] = sp500data['Volume'].pct_change()
-volume_features = ['Volume_1d_change']
-feature_names.extend(volume_features)
-```
-In order to make our prediction with a more solid ground with less interference, we select an essential approach to reduce complexity of our dataset. Since our dataset contains a lot of columns, including the open and close value with and without adjustment, the highest and lowest point, etc. it might be useful for us to examine the correlation and effective weight of every feature to drop the features that do not need to be stressed while selecting and incorporating more significant ones into our further analysis.
-
-#### ***III. Forming the datasets into CSV file & Cleaning***<br />
-```
 sp500_df = pd.DataFrame(sp500data)
 sp500_df.to_csv("sp500_data.csv")
 ```
@@ -99,6 +86,19 @@ read_df.dropna(
 )
 ```
 We extracted the data from source website to a CSV file that contain the information we would like to predict out of our method. We also conducted data cleaning to drop empty values that might affect the validity of our training dataset(sometimes feature not applicable or sometimes there contains NaN as value missing. We selected to plot "Ädjusted Close" to indicate the trend.
+
+#### ***III. Feature Engineering***<br />
+```
+feature_names = []
+for n in [14, 30, 50, 200]:
+    sp500data['ma' + str(n)] = talib.SMA(sp500data['Adj Close'].values, timeperiod=n)
+    sp500data['rsi' + str(n)] = talib.RSI(sp500data['Adj Close'].values, timeperiod=n)
+    feature_names = feature_names + ['ma' + str(n), 'rsi' + str(n)]
+sp500data['Volume_1d_change'] = sp500data['Volume'].pct_change()
+volume_features = ['Volume_1d_change']
+feature_names.extend(volume_features)
+```
+In order to make our prediction with a more solid ground with less interference, we select an essential approach to reduce complexity of our dataset. Since our dataset contains a lot of columns, including the open and close value with and without adjustment, the highest and lowest point, etc. it might be useful for us to examine the correlation and effective weight of every feature to drop the features that do not need to be stressed while selecting and incorporating more significant ones into our further analysis.
 
 #### ***IV. Splitting Training and Testing Datasets***<br />
 ```
@@ -149,11 +149,11 @@ plt.savefig('tree.png')
 We begin to visualize the random forest as combination of decision trees. We will begin by determining the difference between the true value and the prediction values. This difference will be used for calculating the accuracy as well as indicating how well we perform overall. Therefore, we obtained the graph of decision trees as below.
 
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/Trees.png) <br />
-
-We tried to train two companies to see if the predicted value are closely associated with the the correct ground truth from 2016 till now. And we obtained the graphs below. We can see that the accuracy is generally appropriate and constantly high.
-
+We tried two different means to see if our method works.
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/Predicted_1.png)<br />
+We tried to use our model to train with two companies as inputs, and give out the plot for prediction of one among them. The overall trend meets our expectation.
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/Predicted_2.png)<br />
+Then, we tried to use our model to train one company to see if the predicted value are closely associated with the the correct ground truth from 2016 till now. And we obtained the graphs below. We can see that the accuracy is generally appropriate and constantly high.
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/result_2.png)<br />
 
 #### ***VIII. Direction for our next Phase***<br />
