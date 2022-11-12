@@ -141,7 +141,7 @@ def data_manage(data, date):
         x.append(data[i - date: i])
     return np.array(x), y
 ```
-In order to test the output of our prediction more effectively, we changed the input a bit with a defined function to include x as the first 30 days and y as the next day right after. Afterwards, we ran the random forest method again as below.
+In order to test the output of our prediction more effectively, we changed the input a bit with a defined function to include x as the first 30 days and y as the next day right after in a way which we intend to predict the adjusted price of the day right after 30 days that we inputed data. Afterwards, we ran the random forest method again as below.
 ```
 model = RandomForestRegressor(n_estimators=500, random_state=42, min_samples_split=2, min_samples_leaf=1, max_depth=10, bootstrap=True)
 model.fit(x_train, y_train)
