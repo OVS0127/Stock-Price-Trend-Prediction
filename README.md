@@ -130,9 +130,11 @@ accuracy = 100 - np.mean(mape)
 print('Accuracy:', round(accuracy, 2), '%.')
 ```
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/output.png)<br />
-Before we conducted feature engineering as described above, we tried to predict the adjusted close value with simply the raw data, considering all features available. As the first general result, it is a result that generally met our expectation with an R^2 score around 0.87. We used this result to consolidate the process and effect of our effort in feature engineering.
 
-After our implementation of Random Forest with the cleaned dataset after feature engineering and it turns out that the accuracy with random forest on first-cleaned dataset is around 98%.
+Before we conducted feature engineering as described above, we tried to predict the adjusted close value with simply the raw data, considering all features available. As the first general result, it is a result that generally met our expectation with an R^2 score around 0.87. We used this result to consolidate the process and effect of our effort in feature engineering.<br />
+
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/After_feature_engineering.jpg)<br />
+After our implementation of Random Forest with the cleaned dataset after feature engineering and it turns out that the accuracy with random forest on first-cleaned dataset is around 98%.<br />
 
 #### ***VII. Improvement and Visualization***<br />
 ```
@@ -160,11 +162,17 @@ plt.savefig('tree.png')
 We begin to visualize the random forest as combination of decision trees. We will begin by determining the difference between the true value and the prediction values. This difference will be used for calculating the accuracy as well as indicating how well we perform overall. Therefore, we obtained the graph of decision trees as below.
 
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/Trees.png) <br />
+
 We tried two different means to see if our method works.<br />
+
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/Predicted_1.png)<br />
+
 We tried to use our model to train with two companies as inputs, and give out the plot for prediction of one among them. The overall trend meets our expectation.<br />
+
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/Predicted_2.png)<br />
+
 Then, we tried to use our model to train one company to see if the predicted value are closely associated with the the correct ground truth from 2016 till now. And we obtained the graphs below. We can see that the accuracy is generally appropriate and constantly high.<br />
+
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/result_2.png)<br />
 
 #### ***VIII. Direction for our next Phase***<br />
