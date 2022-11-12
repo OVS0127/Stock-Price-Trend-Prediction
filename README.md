@@ -129,9 +129,22 @@ accuracy = 100 - np.mean(mape)
 print('Accuracy:', round(accuracy, 2), '%.')
 ```
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/output.png)<br />
-For the first general result, it generally met our expectation. After our implementation of Random Forest with the cleaned but not reduced dataset and it turns out that the accuracy with random forest on first-cleaned dataset is around 98%.
 
+Before we conducted feature engineering as described above, we tried to predict the adjusted close value with simply the raw dataset, considering all features available. As the first general result, it is a result that generally met our expectation with an R^2 score around 0.87. We used this result to consolidate the process and effect of our effort in feature engineering.<br />
+
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/After_feature_engineering.jpg)<br />
+
+After our implementation of Random Forest with the cleaned dataset after feature engineering and it turns out that the accuracy with random forest on first-cleaned dataset is around 98%.<br />
 #### ***VII. Improvement and Visualization***<br />
+```
+def data_manage(data, date):
+    y = data[date + 1:]
+    x = []
+    for i in range(date, data.shape[0] - 1):
+        x.append(data[i - date: i])
+    return np.array(x), y
+```
+In order to test the output of our prediction more effectively, we changed the input a bit with a defined function to include x as the first 30 days and y as the next day right after in a way which we intend to predict the adjusted price of the day right after 30 days that we inputed data. Afterwards, we ran the random forest method again as below.
 ```
 model = RandomForestRegressor(n_estimators=500, random_state=42, min_samples_split=2, min_samples_leaf=1, max_depth=10, bootstrap=True)
 model.fit(x_train, y_train)
@@ -148,20 +161,23 @@ plt.savefig('tree.png')
 We begin to visualize the random forest as combination of decision trees. We will begin by determining the difference between the true value and the prediction values. This difference will be used for calculating the accuracy as well as indicating how well we perform overall. Therefore, we obtained the graph of decision trees as below.
 
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/Trees.png) <br />
+
 We tried two different means to see if our method works.<br />
+
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/Predicted_1.png)<br />
+
 We tried to use our model to train with two companies as inputs, and give out the plot for prediction of one among them. The overall trend meets our expectation.<br />
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/Predicted_2.png)<br />
+
 Then, we tried to use our model to train one company to see if the predicted value are closely associated with the the correct ground truth from 2016 till now. And we obtained the graphs below. We can see that the accuracy is generally appropriate and constantly high.<br />
+
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/result_2.png)<br />
 
 #### ***VIII. Direction for our next Phase***<br />
 Currently, our implementation of feature engineering and random forest method met our expectation and proved that we are on the right track. However, we have several more aspects to consider before we reach a final conclusion. The high accuracy was probably due to a correct feature chose instead of applicable to every case. Therefore, here are several points we would like to list out.<br />
-1.We would like to further test and configure to determine the correlation thresholds between different column features, and simultaneously, considering the possibility of adding dimensions including variance or moving average, etc. Also, we are considering using tools to visualize the correlation, including SNS's heat map under Exploratory Data Analysis. Hopefully it would boost accuracy.<br />
-2.Overfitting to one or specific sets of data can be detrimental when generalizing the result to other companies. Continuous cross-validation(using different methods, such as kfold), and training with more data with augmentation is required in our next phase.<br />
-3.If possible, we could try out on different methods and compare the effectiveness, including multiple linear regression and forecasting, or deep learning method, to see if any stage could overperform ultimately. There are two major deep learning methods we would like to use for our next phase: Sequence to Sequence Model and Transformer Model. Compare to random forest model, they capture the concept of time better and, for the Transformer Model, could process accompanying time information and a longer time of memory. We would like to try out to see if accuracy hit our target.<br />
-
-
+1. We would like to further test and configure to determine the correlation thresholds between different column features, and simultaneously, considering the possibility of adding dimensions including variance or moving average, etc. Also, we are considering using tools to visualize the correlation, including SNS's heat map under Exploratory Data Analysis. Hopefully it would boost accuracy.<br />
+2. Overfitting to one or specific sets of data can be detrimental when generalizing the result to other companies. Continuous cross-validation(using different methods, such as kfold), and training with more data with augmentation is required in our next phase.<br />
+3. If possible, we could try out on different methods and compare the effectiveness, including multiple linear regression and forecasting, or deep learning method, to see if any stage could overperform ultimately. There are two major deep learning methods we would like to use for our next phase: Sequence to Sequence Model and Transformer Model. Compare to random forest model, they capture the concept of time better and, for the Transformer Model, could process accompanying time information and a longer time of memory. We would like to try out to see if accuracy hit our target.<br />
 
 
 
