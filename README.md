@@ -134,6 +134,7 @@ print('Accuracy:', round(accuracy, 2), '%.')
 Before we conducted feature engineering as described above, we tried to predict the adjusted close value with simply the raw data, considering all features available. As the first general result, it is a result that generally met our expectation with an R^2 score around 0.87. We used this result to consolidate the process and effect of our effort in feature engineering.<br />
 
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/main/images%20in%20report/After_feature_engineering.jpg)<br />
+
 After our implementation of Random Forest with the cleaned dataset after feature engineering and it turns out that the accuracy with random forest on first-cleaned dataset is around 98%.<br />
 
 #### ***VII. Improvement and Visualization***<br />
