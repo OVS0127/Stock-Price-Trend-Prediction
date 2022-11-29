@@ -43,12 +43,29 @@ Zhonghui Shen |C|C|C| | |C
 
 ### *Dataset*
 
-[1]https://www.kaggle.com/datasets/borismarjanovic/price-volume-data-for-all-us-stocks-etfs
+For our Dataset selection, we choose to import from Yahoo finance, which is a widely known website that provide most of the data necessary for the stock market. If we download and import yfinance will help us downloading the data we need using code. The dataset from yfinance look like this. It has seven columns, date, open, high, low, close, adjusted close and volume for a company's stock on continuitive dates.
+```
+            Open       High       Low        Close      Adj Close  Volume
+Date
+2020-01-02  60.849998  60.950001  60.599998  60.900002  55.998753  14629077
+2020-01-03  60.900002  61.200001  60.250000  60.400002  55.538994  14419537
+2020-01-06  60.099998  60.400002  59.799999  60.000000  55.171185  13809308
+2020-01-07  60.200001  60.299999  59.799999  59.900002  55.079235   8818594
+2020-01-08  59.299999  59.400002  58.849998  59.299999  54.527519  16826669
+...               ...        ...        ...        ...        ...       ...
+2022-11-09  43.049999  43.599998  42.500000  43.000000  43.000000   9781099
+2022-11-10  42.349998  42.500000  41.799999  42.500000  42.500000   8914894
+2022-11-11  43.599998  43.700001  42.750000  43.400002  43.400002  23447735
+2022-11-14  43.400002  44.700001  43.349998  43.650002  43.650002  16908635
+2022-11-15  43.900002  44.700001  43.799999  44.700001  44.700001  20487782
+```
+Our further implementation in our midterm and final phase would begin with this dataset for learning.
+
 <br>
 <br>
 <br>
 ## **Midterm Report**
-The datasets and method we should select have triggered intense discussion in our group. At this stage, we scraped the data from Yahoo Finance and collected the trend within 1000 days of stock from each company. Moreover, we utilized feature engineering and random forest to predict the trend of any stock in the market in the future of 1 day, 5 days, 1 month and 1 year. We also figured out possible improvements at current status. **Several comparatively indicative parts of the code and the result we obtained are included in our report below to make the process clear.**
+As we described in our proposal, the datasets and method we should select have triggered intense discussion in our group. At this stage, we scraped the data from Yahoo Finance and collected the trend within 1000 days of stock from each company. Moreover, we utilized feature engineering and random forest to predict the trend of any stock in the market in the future of 1 day, 5 days, 1 month and 1 year. We also figured out possible improvements at current status. **Several comparatively indicative parts of the code and the result we obtained are included in our report below to make the process clear.**
 
 ### *Part I*
 #### ***I. Importing Data and Required Packages***<br />
