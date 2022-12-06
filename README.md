@@ -213,6 +213,16 @@ Currently, our implementation of feature engineering and random forest method me
 3. If possible, we could try out on different methods and compare the effectiveness, including multiple linear regression and forecasting, or deep learning method, to see if any stage could overperform ultimately. There are two major deep learning methods we would like to use for our next phase: Sequence to Sequence Model and Transformer Model. Compare to random forest model, they capture the concept of time better and, for the Transformer Model, could process accompanying time information and a longer time of memory. We would like to try out to see if accuracy hit our target.<br />
 
 
+## **Final Report**
+We aim to use different methods try to predict the stock price with higher accuracy compared to previous endeavor. The background information, problem definition, data collection are the same as stated in our proposal and midterm report.
+
+After the midterm checkpoint, we have implemented two new models to train data: Feature Engineering and Random Forest based on decision trees in order to compare the accuracy between different models and try to find the most accurate way to predict the stock price. The key difference between the previous and current method we used is that the ones we employed in our midterm did not capture the concept of time; however, our new model employed deep learning method and achieved better concept of time. We select LSTM method and transformer.
+
+### *Part I LSTM Method of Prediction*
+#### ***I. Model Overview***<br />
+
+
+
 
 
 
