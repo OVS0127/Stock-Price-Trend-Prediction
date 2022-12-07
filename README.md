@@ -218,8 +218,58 @@ We aim to use different methods try to predict the stock price with higher accur
 
 After the midterm checkpoint, we have implemented two new models to train data: Feature Engineering and Random Forest based on decision trees in order to compare the accuracy between different models and try to find the most accurate way to predict the stock price. The key difference between the previous and current method we used is that the ones we employed in our midterm did not capture the concept of time; however, our new model employed deep learning method and achieved better concept of time. We select LSTM method and transformer.
 
-### *Part I LSTM Method of Prediction*
+### *Part I Transformer*
 #### ***I. Model Overview***<br />
+Transformer is a deep learning method that adopts the mechanism of self-attention, which helps differentially weighting the significance of each part of the input data. We import Transformer and induced parameters as defined below. We added them to our previous model.
+
+```
+class transf_params:
+    n_layers = 11
+    num_heads = 12
+    model_dim = 16  # nr of features
+    forward_dim = 2048
+    output_dim = 1
+    dropout = 0
+    n_epochs = 20
+    lr = 0.01
+```
+```
+class TransformerModel(nn.Module):
+    def __init__(self, params):
+        super(TransformerModel, self).__init__()
+        self.transf = transformer.TransformerModel(n_layers=params.n_layers,
+                                                   num_heads=params.num_heads,
+                                                   model_dim=params.model_dim,
+                                                   forward_dim=params.forward_dim,
+                                                   output_dim=16,
+                                                   dropout=params.dropout)
+        self.linear = nn.Linear(16, params.output_dim)
+    def forward(self, x):
+        transf_out = self.transf(x)
+        out = self.linear(transf_out)
+        return out
+```
+We did the preprocessing steps again in order to make the data appropraite to fit into the model. Here are several parts as illustration. Also, we divided the traning and testing dataset and plotted the graph in order to visualize our result.
+```
+    fig = make_subplots(rows=1, cols=2,
+                        subplot_titles=(f'Daily Return of stock "{df["Company stock name"][0]}"',
+                                        f'Daily change in % of stock "{df["Company stock name"][0]}"'))
+    fig.add_trace(go.Histogram(x=df['Daily Return'].dropna(), marker_color='#330C73', opacity=0.8), row=1, col=1)
+    fig.add_trace(go.Scatter(x=xDR, y=df['Daily Return'].dropna(), mode='lines', line_color='#330C73'), row=1, col=1)
+```
+```
+train_data, test_data, train_data_len = dataset.split(train_split_ratio=0.8, time_period=30)
+    train_data, test_data = dataset.get_torchdata()
+```
+```
+if stationary:
+        predictions = Analysis.inverse_stationary_data(old_df=df, new_df=predictions,
+                                                       orig_feature='Actual', new_feature='Predictions',
+                                                       diff=12, do_orig=False)
+    plot_predictions(df, train_data_len, predictions["Predictions"].values, model_type)
+
+```
+
 
 
 
