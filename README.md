@@ -64,8 +64,8 @@ Our further implementation in our midterm and final phase would begin with this 
 <br>
 <br>
 <br>
-## **Midterm Report**
-As we described in our proposal, the datasets and method we should select have triggered intense discussion in our group. At this stage, we scraped the data from Yahoo Finance and collected the trend within 1000 days of stock from each company. Moreover, we utilized feature engineering and random forest to predict the trend of any stock in the market in the future of 1 day, 5 days, 1 month and 1 year. We also figured out possible improvements at current status. **Several comparatively indicative parts of the code and the result we obtained are included in our report below to make the process clear.**
+## **Phase I**
+We divided our project in two phases. As we described in our proposal, the datasets and method we should select have triggered intense discussion in our group. At this stage, we scraped the data from Yahoo Finance and collected the trend within 1000 days of stock from each company. Moreover, we utilized feature engineering and random forest to predict the trend of any stock in the market in the future of 1 day, 5 days, 1 month and 1 year. We also figured out possible improvements at current status. **Several comparatively indicative parts of the code and the result we obtained are included in our report below to make the process clear.**
 
 ### *Part I*
 #### ***I. Importing Data and Required Packages***<br />
@@ -213,10 +213,10 @@ Currently, our implementation of feature engineering and random forest method me
 3. If possible, we could try out on different methods and compare the effectiveness, including multiple linear regression and forecasting, or deep learning method, to see if any stage could overperform ultimately. There are two major deep learning methods we would like to use for our next phase: Sequence to Sequence Model and Transformer Model. Compare to random forest model, they capture the concept of time better and, for the Transformer Model, could process accompanying time information and a longer time of memory. We would like to try out to see if accuracy hit our target.<br />
 
 
-## **Final Report**
+## **Phase II**
 We aim to use different methods try to predict the stock price with higher accuracy compared to previous endeavor. The background information, problem definition, data collection are the same as stated in our proposal and midterm report.
 
-After the midterm checkpoint, we have implemented two new models to train data: Feature Engineering and Random Forest based on decision trees in order to compare the accuracy between different models and try to find the most accurate way to predict the stock price. The key difference between the previous and current method we used is that the ones we employed in our midterm did not capture the concept of time; however, our new model employed deep learning method and achieved better concept of time. We select LSTM method and transformer.
+After the first checkpoint, we have implemented two new models to train data: Feature Engineering and Random Forest based on decision trees in order to compare the accuracy between different models and try to find the most accurate way to predict the stock price. The key difference between the previous and current method we used is that the ones we employed in our midterm did not capture the concept of time; however, our new model employed deep learning method and achieved better concept of time. We select LSTM method and transformer.
 
 ### *Part I Transformer*
 #### ***I. Model Overview***<br />
@@ -270,13 +270,59 @@ if stationary:
 
 ```
 #### ***II. Result and Output***<br />
-We obtained the output of accuracy as below using transformer. The accuracy rate is 97.24%. <br />
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/transformer%20accuracy.png)<br />
+We obtained the output of accuracy as below using transformer. The accuracy rate is 97.18% with $R^2$ score 0.8399. <br />
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/transformer_accuracy.png)<br />
 After visualization, we obtained the prediction of a stock for two years, from September 2020 to September 2022. The results are straightforward, differentiating different parts in different color. The prediction data is in pink generated from the blue highlighted training dataset of previous years. <br />
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/Transformer%20graph.png)<br />
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/transformer_output.png)<br />
 
+### *Part II LSTM Model*
+#### ***I. Model Overview***<br />
+LSTM model, with full name of long short-term memory, is also a method in deep learning that incurrs a variety of recurrent neural networks with the capability of learning long-term dependencies between two variables in sequencial prediction related problems. Since it has the ability to optimize memorizing the past data and capture the concept of time, it is useful to evaluate time-related sequence. We employed the model to help us doing the selection and prediction. 
+Below, as usual, we listed the parts we considered significant. <br />
+Here is the class for us to utilize the function of LSTM model.<br />
+```
+class LSTM1(nn.Module):
+    def __init__(self, num_classes, input_size, hidden_size, num_layers, seq_length):
+        super(LSTM1, self).__init__()
+        self.num_classes = num_classes 
+        self.num_layers = num_layers
+        self.input_size = input_size 
+        self.hidden_size = hidden_size 
+        self.seq_length = seq_length 
 
+        self.lstm = nn.LSTM(input_size=input_size, hidden_size=hidden_size,
+                          num_layers=num_layers, batch_first=True) #lstm
+        self.fc_1 =  nn.Linear(hidden_size, 128) #fully connected 1
+        self.fc = nn.Linear(128, num_classes) #fully connected last layer
 
+        self.relu = nn.ReLU()
+```
+The model, the loss function and the optimizer are nevertheless important.<br />
+```
+lstm1 = LSTM1(num_classes, input_size, hidden_size, num_layers, X_train_tensors_final.shape[1]) #our lstm class 
+criterion = torch.nn.MSELoss()   
+optimizer = torch.optim.Adam(lstm1.parameters(), lr=learning_rate) 
+```
+We divided the datasets as usual and try to plot out the result.<br />
+```
+train_predict = lstm1(X_test_tensors_final)
+data_predict = train_predict.data.numpy() 
+dataY_plot = y_test_tensors.data.numpy()
+data_predict = mm.inverse_transform(data_predict) 
+dataY_plot = mm.inverse_transform(dataY_plot)
+plt.figure(figsize=(10,6)) =
+plt.axvline(x=200, c='r', linestyle='--')
+```
+
+#### ***II. Result and Output***<br />
+We obtained the output of accuracy as below using transformer. The accuracy rate is 97.18% with $R^2$ score 0.8399. <br />
+![Alt]()<br />
+After visualization, we obtained the prediction of a stock for two years, from September 2020 to September 2022. The results are straightforward, differentiating different parts in different color. The prediction data is in pink generated from the blue highlighted training dataset of previous years. <br />
+![Alt]()<br />
+
+#### ***Review***<br />
+Throughout our project, we manipulated the dataset with four different methods to predict the price of the stock market. First of all, we utilized feature engineering. Then, we concreted our previous result by selecting and adding features relevant put under the random forest regressor. In our second phase, we used two deep learning methods: Transformer and LSTM. All of these method are making suitable predictions and justifiable outputs. However, both of them have advantages and disadvantages, making every step and tryouts significant for the progress though we can see fluctuations. It is nevertheless significant for us to continue improving while learning.
+We have made a video to present our process. Here is the link to our video:
 
 
 
