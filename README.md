@@ -105,7 +105,7 @@ sp500data['Volume_1d_change'] = sp500data['Volume'].pct_change()
 volume_features = ['Volume_1d_change']
 feature_names.extend(volume_features)
 ```
-In order to make our prediction with a more solid ground with less interference, we select an essential approach to reduce complexity of our dataset. Since our dataset contains a lot of columns, including the open and close value with and without adjustment, the highest and lowest point, etc. it might be useful for us to examine the correlation and effective weight of every feature to add the features that could be helpful.
+In addition to the raw data, we consulted professional finance websites and found some technical indicators might be useful. We incorporated those values in our dataset and would like to see if the new features can provide more information and train a better model.
 
 #### ***IV. Splitting Training and Testing Datasets***<br />
 ```
