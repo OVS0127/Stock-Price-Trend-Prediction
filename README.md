@@ -205,6 +205,7 @@ We tried to use our model to train with two companies as inputs, and give out th
 Then, we tried to use our model to train one company to see if the predicted value are closely associated with the the correct ground truth from 2016 till now. And we obtained the graphs below. We can see that the accuracy is generally appropriate and constantly high.<br />
 
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/result_2.png)
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/rf.png)
 
 #### ***VIII. Direction for our next Phase***<br />
 Currently, our implementation of feature engineering and random forest method met our expectation and proved that we are on the right track. However, we have several more aspects to consider before we reach a final conclusion. The high accuracy was probably due to a correct feature chose instead of applicable to every case. Therefore, here are several points we would like to list out.<br />
