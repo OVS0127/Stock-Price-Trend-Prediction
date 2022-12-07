@@ -269,9 +269,9 @@ if stationary:
     plot_predictions(df, train_data_len, predictions["Predictions"].values, model_type)
 
 ```
-We obtained the output of accuracy as below using transformer.<br />
+We obtained the output of accuracy as below using transformer. The accuracy rate is 97.24%. <br />
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/transformer%20accuracy.png)<br />
-After visualization, we obtained the prediction of a stock for two years, from September 2020 to September 2022. <br />
+After visualization, we obtained the prediction of a stock for two years, from September 2020 to September 2022. The results are straightforward, differentiating different parts in different color. The prediction data is in pink generated from the blue highlighted training dataset of previous years. <br />
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/Transformer%20graph.png)<br />
 
 
