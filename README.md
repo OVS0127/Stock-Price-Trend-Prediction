@@ -221,7 +221,46 @@ We aim to use different methods try to predict the stock price with higher accur
 
 After the first checkpoint, we have implemented two new models to train data: Feature Engineering and Random Forest based on decision trees in order to compare the accuracy between different models and try to find the most accurate way to predict the stock price. The key difference between the previous and current method we used is that the ones we employed in our midterm did not capture the concept of time; however, our new model employed deep learning method and achieved better concept of time. We select LSTM method and transformer.
 
-### *Part I Transformer*
+### *Part I LSTM Model*
+#### ***I. Model Overview***<br />
+LSTM model, with full name of long short-term memory, is also a method in deep learning that incurrs a variety of recurrent neural networks with the capability of learning long-term dependencies between two variables in sequencial prediction related problems. Since it has the ability to optimize memorizing the past data and capture the concept of time, it is useful to evaluate time-related sequence. We employed the model to help us doing the selection and prediction. 
+Below, as usual, we listed the parts we considered significant. <br />
+Here is the class for us to utilize the function of LSTM model. The layer is consequential that learns long-term dependencies between time steps in time series and sequence data.<br />
+```
+class LSTM1(nn.Module):
+    def __init__(self, num_classes, input_size, hidden_size, num_layers, seq_length):
+        super(LSTM1, self).__init__()
+        self.num_classes = num_classes 
+        self.num_layers = num_layers
+        self.input_size = input_size 
+        self.hidden_size = hidden_size 
+        self.seq_length = seq_length 
+
+        self.lstm = nn.LSTM(input_size=input_size, hidden_size=hidden_size,
+                          num_layers=num_layers, batch_first=True) #lstm
+        self.fc_1 =  nn.Linear(hidden_size, 128) #fully connected 1
+        self.fc = nn.Linear(128, num_classes) #fully connected last layer
+
+        self.relu = nn.ReLU()
+```
+The model, the loss function and the optimizer are nevertheless important.<br />
+```
+lstm1 = LSTM1(num_classes, input_size, hidden_size, num_layers, X_train_tensors_final.shape[1]) #our lstm class 
+criterion = torch.nn.MSELoss()   
+optimizer = torch.optim.Adam(lstm1.parameters(), lr=learning_rate) 
+```
+We divided the datasets as usual and try to plot out the result.<br />
+```
+train_predict = lstm1(X_test_tensors_final)
+data_predict = train_predict.data.numpy() 
+dataY_plot = y_test_tensors.data.numpy()
+data_predict = mm.inverse_transform(data_predict) 
+dataY_plot = mm.inverse_transform(dataY_plot)
+plt.figure(figsize=(10,6)) =
+plt.axvline(x=200, c='r', linestyle='--')
+```
+
+### *Part II Transformer*
 #### ***I. Model Overview***<br />
 Transformer is a deep learning method that adopts the mechanism of self-attention, which helps differentially weighting the significance of each part of the input data. We import Transformer and induced parameters as defined below. We added them to our previous model.
 
@@ -278,44 +317,6 @@ We obtained the output of accuracy as below using transformer. The accuracy rate
 After visualization, we obtained the prediction of a stock for two years, from September 2020 to September 2022. The results are straightforward, differentiating different parts in different color. The prediction data is in pink. <br />
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/transformer_output.png)<br />
 
-### *Part II LSTM Model*
-#### ***I. Model Overview***<br />
-LSTM model, with full name of long short-term memory, is also a method in deep learning that incurrs a variety of recurrent neural networks with the capability of learning long-term dependencies between two variables in sequencial prediction related problems. Since it has the ability to optimize memorizing the past data and capture the concept of time, it is useful to evaluate time-related sequence. We employed the model to help us doing the selection and prediction. 
-Below, as usual, we listed the parts we considered significant. <br />
-Here is the class for us to utilize the function of LSTM model. The layer is consequential that learns long-term dependencies between time steps in time series and sequence data.<br />
-```
-class LSTM1(nn.Module):
-    def __init__(self, num_classes, input_size, hidden_size, num_layers, seq_length):
-        super(LSTM1, self).__init__()
-        self.num_classes = num_classes 
-        self.num_layers = num_layers
-        self.input_size = input_size 
-        self.hidden_size = hidden_size 
-        self.seq_length = seq_length 
-
-        self.lstm = nn.LSTM(input_size=input_size, hidden_size=hidden_size,
-                          num_layers=num_layers, batch_first=True) #lstm
-        self.fc_1 =  nn.Linear(hidden_size, 128) #fully connected 1
-        self.fc = nn.Linear(128, num_classes) #fully connected last layer
-
-        self.relu = nn.ReLU()
-```
-The model, the loss function and the optimizer are nevertheless important.<br />
-```
-lstm1 = LSTM1(num_classes, input_size, hidden_size, num_layers, X_train_tensors_final.shape[1]) #our lstm class 
-criterion = torch.nn.MSELoss()   
-optimizer = torch.optim.Adam(lstm1.parameters(), lr=learning_rate) 
-```
-We divided the datasets as usual and try to plot out the result.<br />
-```
-train_predict = lstm1(X_test_tensors_final)
-data_predict = train_predict.data.numpy() 
-dataY_plot = y_test_tensors.data.numpy()
-data_predict = mm.inverse_transform(data_predict) 
-dataY_plot = mm.inverse_transform(dataY_plot)
-plt.figure(figsize=(10,6)) =
-plt.axvline(x=200, c='r', linestyle='--')
-```
 
 #### ***II. Result and Output***<br />
 We obtained the output of accuracy as below using transformer. We are using $R^2$ to evaluate and found out the accuracy is approaching 1. <br />
