@@ -130,6 +130,16 @@ model.fit(x_train, y_train)
 predict = model.predict(x_test)
 ```
 ```
+hyper_param = {
+'n_estimators': [20, 50, 100, 500, 1000],  
+'max_depth': np.arange(1, 15, 1),  
+'min_samples_split': [2, 10, 9], 
+'min_samples_leaf': np.arange(1, 15, 2, dtype=int),  
+'bootstrap': [True, False], 
+'random_state': [1, 2, 30, 42]
+}
+```
+```
 rscv = RandomizedSearchCV(estimator=model, param_distributions=grid_rf, cv=3, n_jobs=-1, verbose=2, n_iter=200)
 rscv_fit = rscv.fit(x_train, y_train)
 best_parameters = rscv_fit.best_params_
