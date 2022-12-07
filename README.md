@@ -97,16 +97,7 @@ Our dataset from the sourse website looks like this.
             Open       High       Low        Close      Adj Close  Volume
 Date
 2020-01-02  60.849998  60.950001  60.599998  60.900002  55.998753  14629077
-2020-01-03  60.900002  61.200001  60.250000  60.400002  55.538994  14419537
-2020-01-06  60.099998  60.400002  59.799999  60.000000  55.171185  13809308
-2020-01-07  60.200001  60.299999  59.799999  59.900002  55.079235   8818594
-2020-01-08  59.299999  59.400002  58.849998  59.299999  54.527519  16826669
-...               ...        ...        ...        ...        ...       ...
-2022-11-09  43.049999  43.599998  42.500000  43.000000  43.000000   9781099
-2022-11-10  42.349998  42.500000  41.799999  42.500000  42.500000   8914894
-2022-11-11  43.599998  43.700001  42.750000  43.400002  43.400002  23447735
-2022-11-14  43.400002  44.700001  43.349998  43.650002  43.650002  16908635
-2022-11-15  43.900002  44.700001  43.799999  44.700001  44.700001  20487782
+...
 ```
 We made some cleaning to it for further use.
 ```
@@ -139,7 +130,15 @@ x = df.iloc[:, [0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]].values
 y = df.iloc[:, 4].values
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.26,  random_state=0)
 ```
-We selected the fifth column 'Adjusted Close' as the ground truth(y). The rest of the columns becomes the input(x). we also split x and y into their training and testing datasets and normalized them to fit them into appropriate scale.
+```
+def data_manage(data, date):
+    y = data[date + 1:]
+    x = []
+    for i in range(date, data.shape[0] - 1):
+        x.append(data[i - date: i])
+    return np.array(x), y 
+```
+We selected the fifth column 'Adjusted Close' as the ground truth(y). The rest of the columns becomes the input(x). we also split x and y into their training and testing datasets and normalized them to fit them into appropriate scale. Afterwards, we split the adjusted close into two sets, one set in the next day and one set in next thirty days.
 
 #### ***V. Model***<br />
 ```
