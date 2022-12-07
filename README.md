@@ -109,17 +109,15 @@ In order to make our prediction with a more solid ground with less interference,
 
 #### ***IV. Splitting Training and Testing Datasets***<br />
 ```
-x = df.iloc[:, [0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]].values
-y = df.iloc[:, 4].values
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.26,  random_state=0)
-```
-```
 def data_manage(data, date):
     y = data[date + 1:]
     x = []
     for i in range(date, data.shape[0] - 1):
         x.append(data[i - date: i])
     return np.array(x), y 
+```
+```
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.26,  random_state=0)
 ```
 We selected the fifth column 'Adjusted Close' as the ground truth(y). The rest of the columns becomes the input(x). we also split x and y into their training and testing datasets and normalized them to fit them into appropriate scale. Afterwards, we split the adjusted close into two sets, one set in the next day and one set in next thirty days.
 
