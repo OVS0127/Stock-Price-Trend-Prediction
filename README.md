@@ -309,7 +309,10 @@ The overall result is performing well and higher than our expectation.
 
 #### ***Review***<br />
 Throughout our project, we manipulated the dataset with initial feature engineered prediction and used three different models to predict the price of the stock market. First, we concreted our previous result by selecting and adding features relevant put under the random forest regressor. In our second phase, we used two deep learning methods: Transformer and LSTM(without positional encoding layer). All of these three method are making suitable predictions and justifiable outputs. However, both of them have advantages and disadvantages, making every step and tryouts significant for the progress though we can see fluctuations. After training with one set of data, we tried another set of another company and strengthen our confident in our prediction. It is nevertheless significant for us to continue improving while learning.
-We have made a video to present our process. Here is the link to our video:
+We have made a video to present our process. <br />
+Here is our final Gannt Chart:<br />
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/gannt%20chart.png)<br />
+Here is the link to our video:<br />
 
 
 
