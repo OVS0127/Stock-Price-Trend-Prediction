@@ -297,7 +297,7 @@ Throughout our project, we manipulated the dataset with initial feature engineer
 We have made a video to present our process. <br />
 Here is our final Gannt Chart:<br />
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/gannt%20chart.png)<br />
-Here is the link to our video:<br />
+Here is the link to our video:<br />https://youtu.be/LqI5ziBLimo
 
 
 
