@@ -321,7 +321,7 @@ After visualization, we obtained the prediction of a stock for 200 days. The res
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/LSTM_result.png)<br />
 
 #### ***Review***<br />
-Throughout our project, we manipulated the dataset with four different methods to predict the price of the stock market. First of all, we utilized feature engineering. Then, we concreted our previous result by selecting and adding features relevant put under the random forest regressor. In our second phase, we used two deep learning methods: Transformer and LSTM. All of these method are making suitable predictions and justifiable outputs. However, both of them have advantages and disadvantages, making every step and tryouts significant for the progress though we can see fluctuations. It is nevertheless significant for us to continue improving while learning.
+Throughout our project, we manipulated the dataset with initial feature engineered prediction and used three different models to predict the price of the stock market. First, we concreted our previous result by selecting and adding features relevant put under the random forest regressor. In our second phase, we used two deep learning methods: Transformer and LSTM. All of these three method are making suitable predictions and justifiable outputs. However, both of them have advantages and disadvantages, making every step and tryouts significant for the progress though we can see fluctuations. It is nevertheless significant for us to continue improving while learning.
 We have made a video to present our process. Here is the link to our video:
 
 
