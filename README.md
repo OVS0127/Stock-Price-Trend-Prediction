@@ -105,7 +105,7 @@ sp500data['Volume_1d_change'] = sp500data['Volume'].pct_change()
 volume_features = ['Volume_1d_change']
 feature_names.extend(volume_features)
 ```
-In order to make our prediction with a more solid ground with less interference, we select an essential approach to reduce complexity of our dataset. Since our dataset contains a lot of columns, including the open and close value with and without adjustment, the highest and lowest point, etc. it might be useful for us to examine the correlation and effective weight of every feature to drop the features that do not need to be stressed while selecting and incorporating more significant ones into our further analysis.
+In order to make our prediction with a more solid ground with less interference, we select an essential approach to reduce complexity of our dataset. Since our dataset contains a lot of columns, including the open and close value with and without adjustment, the highest and lowest point, etc. it might be useful for us to examine the correlation and effective weight of every feature to add the features that could be helpful.
 
 #### ***IV. Splitting Training and Testing Datasets***<br />
 ```
@@ -150,20 +150,8 @@ Before we conducted feature engineering as described above, we tried to predict 
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/After_feature_engineering.jpg)<br />
 
 #### ***VII. Improvement and Visualization***<br />
-```
-def data_manage(data, date):
-    y = data[date + 1:]
-    x = []
-    for i in range(date, data.shape[0] - 1):
-        x.append(data[i - date: i])
-    return np.array(x), y
-```
+
 In order to test the output of our prediction more effectively, we changed the input a bit with a defined function to include x as the first 30 days and y as the next day right after in a way which we intend to predict the adjusted price of the day right after 30 days that we inputed data. Afterwards, we ran the random forest method again as below.
-```
-model = RandomForestRegressor(n_estimators=500, random_state=42, min_samples_split=2, min_samples_leaf=1, max_depth=10, bootstrap=True)
-model.fit(x_train, y_train)
-predict = model.predict(x_test)
-```
 ```
 one_estimator = rscv_fit.estimator[0]
 f_name, c_name = feature_target_name(date)
