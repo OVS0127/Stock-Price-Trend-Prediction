@@ -284,11 +284,7 @@ class TransformerModel(nn.Module):
 ```
 We did the preprocessing steps again in order to make the data appropraite to fit into the model. Here are several parts as illustration. Also, we divided the traning and testing dataset and plotted the graph in order to visualize our result.
 ```
-    fig = make_subplots(rows=1, cols=2,
-                        subplot_titles=(f'Daily Return of stock "{df["Company stock name"][0]}"',
-                                        f'Daily change in % of stock "{df["Company stock name"][0]}"'))
-    fig.add_trace(go.Histogram(x=df['Daily Return'].dropna(), marker_color='#330C73', opacity=0.8), row=1, col=1)
-    fig.add_trace(go.Scatter(x=xDR, y=df['Daily Return'].dropna(), mode='lines', line_color='#330C73'), row=1, col=1)
+dataset.get_dataset(scale=False, stationary=stationary)
 ```
 ```
 train_data, test_data, train_data_len = dataset.split(train_split_ratio=0.8, time_period=30)
