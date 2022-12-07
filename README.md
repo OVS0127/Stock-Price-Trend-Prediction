@@ -149,7 +149,6 @@ Before we conducted feature engineering as described above, we tried to predict 
 
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/After_feature_engineering.jpg)<br />
 
-After our implementation of Random Forest with the cleaned dataset after feature engineering and it turns out that the accuracy with random forest on first-cleaned dataset is around 98%.<br />
 #### ***VII. Improvement and Visualization***<br />
 ```
 def data_manage(data, date):
