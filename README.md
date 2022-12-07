@@ -279,7 +279,7 @@ After visualization, we obtained the prediction of a stock for two years, from S
 #### ***I. Model Overview***<br />
 LSTM model, with full name of long short-term memory, is also a method in deep learning that incurrs a variety of recurrent neural networks with the capability of learning long-term dependencies between two variables in sequencial prediction related problems. Since it has the ability to optimize memorizing the past data and capture the concept of time, it is useful to evaluate time-related sequence. We employed the model to help us doing the selection and prediction. 
 Below, as usual, we listed the parts we considered significant. <br />
-Here is the class for us to utilize the function of LSTM model.<br />
+Here is the class for us to utilize the function of LSTM model. The layer is consequential that learns long-term dependencies between time steps in time series and sequence data.<br />
 ```
 class LSTM1(nn.Module):
     def __init__(self, num_classes, input_size, hidden_size, num_layers, seq_length):
