@@ -260,6 +260,12 @@ plt.figure(figsize=(10,6)) =
 plt.axvline(x=200, c='r', linestyle='--')
 ```
 
+#### ***II. Result and Output***<br />
+We obtained the output of accuracy as below using transformer. We are using $R^2$ to evaluate and found out the accuracy is approaching 1. <br />
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/LSTM_r_squared.png)<br />
+After visualization, we obtained the prediction of a stock for 200 days. The results are also obvious differentiating different parts in different color. The trends of the blue and the orange curve are approaching each other.<br />
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/LSTM_result.png)<br />
+
 ### *Part II Transformer*
 #### ***I. Model Overview***<br />
 Transformer is a deep learning method that adopts the mechanism of self-attention, which helps differentially weighting the significance of each part of the input data. We import Transformer and induced parameters as defined below. We added them to our previous model.
@@ -318,11 +324,6 @@ After visualization, we obtained the prediction of a stock for two years, from S
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/transformer_output.png)<br />
 
 
-#### ***II. Result and Output***<br />
-We obtained the output of accuracy as below using transformer. We are using $R^2$ to evaluate and found out the accuracy is approaching 1. <br />
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/LSTM_r_squared.png)<br />
-After visualization, we obtained the prediction of a stock for 200 days. The results are also obvious differentiating different parts in different color. The trends of the blue and the orange curve are approaching each other.<br />
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/LSTM_result.png)<br />
 
 #### ***Review***<br />
 Throughout our project, we manipulated the dataset with initial feature engineered prediction and used three different models to predict the price of the stock market. First, we concreted our previous result by selecting and adding features relevant put under the random forest regressor. In our second phase, we used two deep learning methods: Transformer and LSTM. All of these three method are making suitable predictions and justifiable outputs. However, both of them have advantages and disadvantages, making every step and tryouts significant for the progress though we can see fluctuations. It is nevertheless significant for us to continue improving while learning.
