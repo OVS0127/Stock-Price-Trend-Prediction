@@ -303,7 +303,7 @@ We obtained the output of accuracy as below using transformer. The accuracy rate
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/transformer_accuracy.png)<br />
 After visualization, we obtained the prediction of a stock for two years, from September 2020 to September 2022. The results are straightforward, differentiating different parts in different color. The prediction data is in pink. <br />
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/transformer_output.png)<br />
-We tried to train the same LSTM model with another company in order to see if the good overall result is currently overfitted and cannot be extented to the others.<br />
+We tried to train the same transformer model with another company in order to see if the good overall result is currently overfitted and cannot be extented to the others.<br />
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/transformer_final.png)<br />
 The overall result is performing well and higher than our expectation.
 
