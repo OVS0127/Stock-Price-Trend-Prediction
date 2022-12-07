@@ -1,0 +1,110 @@
+#CS4641
+
+import yfinance as yf
+import talib
+import datetime as dt
+import pandas as pd
+import numpy as np
+from numpy import arange
+import matplotlib.pyplot as plt
+from pandas import read_csv
+from sklearn import metrics
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import RandomizedSearchCV
+
+stock_list = ['0005.HK', '0006.HK', '0066.HK', '0700.HK', '2800.HK']
+sp500data = yf.download("^GSPC", start="2016-10-18", end="2020-11-6")
+# feature_names = []
+# for n in [14, 30, 50, 200]:
+#     sp500data['ma' + str(n)] = talib.SMA(sp500data['Adj Close'].values, timeperiod=n)
+#     sp500data['rsi' + str(n)] = talib.RSI(sp500data['Adj Close'].values, timeperiod=n)
+
+#     feature_names = feature_names + ['ma' + str(n), 'rsi' + str(n)]
+# sp500data['Volume_1d_change'] = sp500data['Volume'].pct_change()
+
+# volume_features = ['Volume_1d_change']
+# feature_names.extend(volume_features)
+
+#1公司， 2020年到现在的股市  -》n公司， 数据 [n, date] 只用adj Close
+
+#read csv
+sp500_df = pd.DataFrame(sp500data)
+sp500_df.to_csv("sp500_data.csv")
+print(sp500_df)
+read_df = pd.read_csv("sp500_data.csv")
+read_df.set_index("Date", inplace=True)
+
+#clean data
+pd.set_option('mode.use_inf_as_na', True)
+read_df.dropna(
+    axis=0,
+    how='any',
+    subset=None,
+    inplace=True
+)
+
+read_df['Adj Close'].plot()
+plt.ylabel("Adjusted Close Prices")
+plt.show()
+
+df = pd.read_csv("sp500_data.csv")
+df.set_index("Date", inplace=True)
+df.dropna(inplace=True)
+
+# split into train and test set
+x = df.iloc[:, [0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]].values
+y = df.iloc[:, 4].values
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.26,  random_state=0)
+
+scale = StandardScaler()
+x_train = scale.fit_transform(x_train)
+x_test = scale.transform(x_test)
+
+#model
+model = RandomForestRegressor(n_estimators=500, random_state=42, min_samples_split=2, min_samples_leaf=1, max_depth=10, bootstrap=True)
+model.fit(x_train, y_train)
+predict = model.predict(x_test)
+print(predict)
+print(predict.shape)
+
+#Hyperparameter
+grid_rf = {
+
+'n_estimators': [20, 50, 100, 500, 1000],  
+'max_depth': np.arange(1, 15, 1),  
+'min_samples_split': [2, 10, 9], 
+'min_samples_leaf': np.arange(1, 15, 2, dtype=int),  
+'bootstrap': [True, False], 
+'random_state': [1, 2, 30, 42]
+}
+
+#cross validation
+rscv = RandomizedSearchCV(estimator=model, param_distributions=grid_rf, cv=3, n_jobs=-1, verbose=2, n_iter=200)
+rscv_fit = rscv.fit(x_train, y_train)
+best_parameters = rscv_fit.best_params_
+print(best_parameters)
+
+
+#result
+print("Mean Absolute Error:", round(metrics.mean_absolute_error(y_test, predict), 4))
+print("Mean Squared Error:", round(metrics.mean_squared_error(y_test, predict), 4))
+print("Root Mean Squared Error:", round(np.sqrt(metrics.mean_squared_error(y_test, predict)), 4))
+print("(R^2) Score:", round(metrics.r2_score(y_test, predict), 4))
+print(f'Train Score : {model.score(x_train, y_train) * 100:.2f}% and Test Score : {model.score(x_test, y_test) * 100:.2f}% using Random Tree Regressor.')
+errors = abs(predict - y_test)
+mape = 100 * (errors / y_test)
+accuracy = 100 - np.mean(mape)
+print('Accuracy:', round(accuracy, 2), '%.') 
+
+predictions = pd.DataFrame({"Predictions": predict}, index=pd.date_range(start=df.index[-1], periods=len(predict), freq="D"))
+predictions.to_csv("Predicted-price-data.csv") 
+#colllects future days from predicted values
+oneyear_df = pd.DataFrame(predictions[:252])
+oneyear_df.to_csv("one-year-predictions.csv")
+onemonth_df = pd.DataFrame(predictions[:21])
+onemonth_df.to_csv("one-month-predictions.csv")
+fivedays_df = pd.DataFrame(predictions[:5])
+fivedays_df.to_csv("five-days-predictions.csv")
