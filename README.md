@@ -202,9 +202,9 @@ Then, we tried to use our model to train one company to see if the predicted val
 
 We tried two different means to see if our method works.<br />
 As shown above, we tried to use our model to train with two companies as inputs, and give out the plot for prediction of one among them. The overall trend meets our expectation.<br />
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/Predicted_1.png)
-We tried another stock as well to reevaluate our prediction.
-![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/Predicted_2.png)
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/Predicted_1.png)<br />
+We tried another stock as well to reevaluate our prediction.<br />
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/Predicted_2.png)<br />
 
 
 
