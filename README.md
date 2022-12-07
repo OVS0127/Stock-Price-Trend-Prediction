@@ -265,6 +265,9 @@ We obtained the output of accuracy as below using transformer. We are using $R^2
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/LSTM_r_squared.png)<br />
 After visualization, we obtained the prediction of a stock for 200 days. The results are also obvious differentiating different parts in different color. The trends of the blue and the orange curve are approaching each other.<br />
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/LSTM_result.png)<br />
+However, we tried to train the same LSTM model with another company in order to see if the good overall result is a little bit overfit and cannot be extented to the others. <br />
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/LSTM_2.png)<br />
+We can see the overall trend is correct but there are large differences between ground truth and the predicted value, which motivate us with a new method.
 
 ### *Part II Transformer*
 #### ***I. Model Overview***<br />
