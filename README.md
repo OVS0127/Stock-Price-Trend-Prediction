@@ -266,20 +266,10 @@ class transf_params:
     lr = 0.01
 ```
 ```
-class TransformerModel(nn.Module):
-    def __init__(self, params):
-        super(TransformerModel, self).__init__()
-        self.transf = transformer.TransformerModel(n_layers=params.n_layers,
-                                                   num_heads=params.num_heads,
-                                                   model_dim=params.model_dim,
-                                                   forward_dim=params.forward_dim,
-                                                   output_dim=16,
-                                                   dropout=params.dropout)
-        self.linear = nn.Linear(16, params.output_dim)
-    def forward(self, x):
-        transf_out = self.transf(x)
-        out = self.linear(transf_out)
-        return out
+        self.encoder = Encoder(n_layers, model_dim, num_heads, forward_dim, dropout)
+        self.flatten = nn.Flatten()
+        self.linear = nn.Linear(16, output_dim)
+        self.relu = nn.ReLU(inplace=True)
 ```
 We did the preprocessing steps again in order to make the data appropraite to fit into the model. Here are several parts as illustration. Also, we divided the traning and testing dataset and plotted the graph in order to visualize our result.
 ```
