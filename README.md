@@ -270,7 +270,7 @@ if stationary:
 
 ```
 #### ***II. Result and Output***<br />
-We obtained the output of accuracy as below using transformer. The accuracy rate is 97.18% with $R^2$ score 0.8399. <br />
+We obtained the output of accuracy as below using transformer. The accuracy rate is indicated by $R^2$ score 0.8333. <br />
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/transformer_accuracy.png)<br />
 After visualization, we obtained the prediction of a stock for two years, from September 2020 to September 2022. The results are straightforward, differentiating different parts in different color. The prediction data is in pink. <br />
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/transformer_output.png)<br />
