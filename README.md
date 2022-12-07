@@ -265,7 +265,7 @@ We obtained the output of accuracy as below using transformer. We are using $R^2
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/LSTM_r_squared.png)<br />
 After visualization, we obtained the prediction of a stock for 200 days. The results are also obvious differentiating different parts in different color. The trends of the blue and the orange curve are approaching each other.<br />
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/LSTM_result.png)<br />
-However, we tried to train the same LSTM model with another company in order to see if the good overall result is a little bit overfit and cannot be extented to the others. <br />
+However, we tried to train the same LSTM model with another company in order to see if the good overall result is a little bit overfitted and cannot be extented to the others. <br />
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/LSTM_2.png)<br />
 We can see the overall trend is correct but there are large differences between ground truth and the predicted value, which motivate us with a new method.
 
@@ -325,11 +325,12 @@ We obtained the output of accuracy as below using transformer. The accuracy rate
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/transformer_accuracy.png)<br />
 After visualization, we obtained the prediction of a stock for two years, from September 2020 to September 2022. The results are straightforward, differentiating different parts in different color. The prediction data is in pink. <br />
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/transformer_output.png)<br />
-
-
+We tried to train the same LSTM model with another company in order to see if the good overall result is currently overfitted and cannot be extented to the others.<br />
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/transformer_final.png)<br />
+The overall result is performing well and higher than our expectation.
 
 #### ***Review***<br />
-Throughout our project, we manipulated the dataset with initial feature engineered prediction and used three different models to predict the price of the stock market. First, we concreted our previous result by selecting and adding features relevant put under the random forest regressor. In our second phase, we used two deep learning methods: Transformer and LSTM. All of these three method are making suitable predictions and justifiable outputs. However, both of them have advantages and disadvantages, making every step and tryouts significant for the progress though we can see fluctuations. It is nevertheless significant for us to continue improving while learning.
+Throughout our project, we manipulated the dataset with initial feature engineered prediction and used three different models to predict the price of the stock market. First, we concreted our previous result by selecting and adding features relevant put under the random forest regressor. In our second phase, we used two deep learning methods: Transformer and LSTM(without position encoding layer). All of these three method are making suitable predictions and justifiable outputs. However, both of them have advantages and disadvantages, making every step and tryouts significant for the progress though we can see fluctuations. After training with one set of data, we tried another set of another company and strengthen our confident in our prediction. It is nevertheless significant for us to continue improving while learning.
 We have made a video to present our process. Here is the link to our video:
 
 
