@@ -231,7 +231,7 @@ lstm1 = LSTM1(num_classes, input_size, hidden_size, num_layers, X_train_tensors_
 criterion = torch.nn.MSELoss()   
 optimizer = torch.optim.Adam(lstm1.parameters(), lr=learning_rate) 
 ```
-We divided the datasets as usual and try to plot out the result.<br />
+We forward pass the test input into the model and plot out the result.<br />
 ```
 train_predict = lstm1(X_test_tensors_final)
 data_predict = train_predict.data.numpy() 
