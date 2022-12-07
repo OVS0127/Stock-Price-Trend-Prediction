@@ -315,10 +315,10 @@ plt.axvline(x=200, c='r', linestyle='--')
 ```
 
 #### ***II. Result and Output***<br />
-We obtained the output of accuracy as below using transformer. The accuracy rate is 97.18% with $R^2$ score 0.8399. <br />
-![Alt]()<br />
+We obtained the output of accuracy as below using transformer. We are using $R^2$ to evaluate and found out the accuracy is approaching 1. <br />
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/LSTM_r_squared.png)<br />
 After visualization, we obtained the prediction of a stock for two years, from September 2020 to September 2022. The results are straightforward, differentiating different parts in different color. The prediction data is in pink generated from the blue highlighted training dataset of previous years. <br />
-![Alt]()<br />
+![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/blob/raw/images%20in%20report/LSTM_result.png)<br />
 
 #### ***Review***<br />
 Throughout our project, we manipulated the dataset with four different methods to predict the price of the stock market. First of all, we utilized feature engineering. Then, we concreted our previous result by selecting and adding features relevant put under the random forest regressor. In our second phase, we used two deep learning methods: Transformer and LSTM. All of these method are making suitable predictions and justifiable outputs. However, both of them have advantages and disadvantages, making every step and tryouts significant for the progress though we can see fluctuations. It is nevertheless significant for us to continue improving while learning.
