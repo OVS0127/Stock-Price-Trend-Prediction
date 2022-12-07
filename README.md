@@ -272,7 +272,7 @@ if stationary:
 #### ***II. Result and Output***<br />
 We obtained the output of accuracy as below using transformer. The accuracy rate is 97.18% with $R^2$ score 0.8399. <br />
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/transformer_accuracy.png)<br />
-After visualization, we obtained the prediction of a stock for two years, from September 2020 to September 2022. The results are straightforward, differentiating different parts in different color. The prediction data is in pink generated from the blue highlighted training dataset of previous years. <br />
+After visualization, we obtained the prediction of a stock for two years, from September 2020 to September 2022. The results are straightforward, differentiating different parts in different color. The prediction data is in pink. <br />
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/transformer_output.png)<br />
 
 ### *Part II LSTM Model*
@@ -317,7 +317,7 @@ plt.axvline(x=200, c='r', linestyle='--')
 #### ***II. Result and Output***<br />
 We obtained the output of accuracy as below using transformer. We are using $R^2$ to evaluate and found out the accuracy is approaching 1. <br />
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/LSTM_r_squared.png)<br />
-After visualization, we obtained the prediction of a stock for two years, from September 2020 to September 2022. The results are straightforward, differentiating different parts in different color. The prediction data is in pink generated from the blue highlighted training dataset of previous years. <br />
+After visualization, we obtained the prediction of a stock for 200 days. The results are also obvious differentiating different parts in different color. The trends of the blue and the orange curve are approaching each other.<br />
 ![Alt](https://github.com/OVS0127/Stock-Price-Trend-Prediction/raw/main/images%20in%20report/LSTM_result.png)<br />
 
 #### ***Review***<br />
